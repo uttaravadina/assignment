@@ -1,0 +1,33 @@
+# Brief
+
+The algorithm is based on 4 neighbours connected components.
+Given the current position of in the matrix i and j, where i represents the row and j the column number,
+the 4 neighbours can be accessed with (i-1,j) = top, (i+1, j) = down, (i, j-1) = left and (i,j+1) = right.
+
+The algorithm will parse through the original matrix and label them depending
+upon the neighbours into label matrix.
+But in order for the labeling to complete there needs to be 2 passes.
+1 pass will label the original matrix into label matrix.
+2 pass will parse throught the label matrix and connect any disconnected components.
+
+## Core Algorithm
+The core of the algorithm is to parse throught the given matrix and check 
+for 4 neighbours for a given position and make label them under these conditions:
+
+1. If current position is 0 then skip the position.
+2. If any current position encounters multiple labels from neighbours 
+it will choose for the smallest label.
+
+### 1st pass
+The goal of the first pass is to just label the possible connections.
+Since the matrix is being parsed for the **first time** and **row-wise**
+for any given position (i,j) the right and down positions haven't been visited. 
+So eliminating right and down positions for 1st pass reduces overall processing.
+
+### 2nd pass
+The goal of the 2nd pass is to connect any disconnected elements in the label matrix.
+This time we have already visited all the positions therefore all 4 positions 
+will be considered as any of them can have the smallest label.
+The only difference in the 2nd pass with respect to 1st pass is that 
+given the current position (i,j) the value of the smallest neighbour 
+will be assigned to all of them including the neighbours.
